@@ -96,7 +96,6 @@ function showCurrentWeatherData(currentWeatherData) {
     cloud_cov.innerHTML = cloudCov + "%";
 }   
 
-
 //WEATHERBIT API
 // using weatherbit api to get weather information
 async function getDailyForecast() {
@@ -113,13 +112,9 @@ async function getDailyForecast() {
     } catch (err) {
         alert(err);
     }
-    
 }
 
 function showDailyForecast(data) {
-    
-    
-    
     let totalDaysCount = 5;
     let totalConditionsCount = 5;
     let days = createDays();
@@ -135,8 +130,7 @@ function showDailyForecast(data) {
     }
 
     function addConditionElementsOnEachDay(days) {
-        for (let i = 0; i < days.length; i++) {
-            
+        for (let i = 0; i < days.length; i++) {        
                 days[i][0] = document.querySelector(`#daily_date${i+1}`);
                 days[i][1] = document.querySelector(`#daily_hi${i+1}`);
                 days[i][2] = document.querySelector(`#daily_low${i+1}`);
@@ -200,4 +194,3 @@ async function getCityImageData() {
         alert(err);
     }
 }	
-
