@@ -14,8 +14,6 @@ function onDomLoad() {
     getDailyForecast();  
 }
 
-
-
 function onBtnSearch(event) {
     event.preventDefault();
     cityLocation = inputSearch.value;
@@ -32,13 +30,13 @@ async function getCureentWeatherData() {
    
     try {
         let response = await fetch(`https://api.weatherbit.io/v2.0/current?city=${cityLocation}&units=m&key=d42a74cfefea45eeb830c45c2b0109fa`);
-        console.log("dd", response);
+        
         if (response.status !== 200) {
             throw new Error("Cant get Data from API")
         }
-        //proceed once the first promise is resolved.
+        
         let currentWeatherData = await response.json();
-        //proceed only when the second promise is resolved
+        
         showCurrentWeatherData(currentWeatherData.data[0]);
     } catch (err) {
         alert(err);
@@ -104,11 +102,11 @@ function showCurrentWeatherData(currentWeatherData) {
 async function getDailyForecast() {
     try {
         let response = await fetch(`https://api.weatherbit.io/v2.0/forecast/daily?city=${cityLocation}&days=5&key=d42a74cfefea45eeb830c45c2b0109fa`);
-        console.log(response,"aa");
+        
         if (response.status !== 200) {
             throw new Error("Cant get data from API");
         }
-        //proceed once the first promise is resolved.
+        
         let dailyForecastData = await response.json();
     
         showDailyForecast(dailyForecastData.data);
@@ -126,8 +124,7 @@ function showDailyForecast(data) {
     let totalConditionsCount = 5;
     let days = createDays();
     addConditionElementsOnEachDay(days);
-    console.log(data,"bb")
-
+    
     function createDays() {
         let days = [];
         for (let i = 0; i < totalDaysCount; i++) {
@@ -162,12 +159,6 @@ function showDailyForecast(data) {
     }
 }
 
-// async function getCurrentTime(city) {
-//     // let currentTime = await fetch(`http://worldtimeapi.org/api/timezone/${city}`)
-//     let currentTime = await fetch(`https://maps.googleapis.com/maps/api/timezone/json?${city}`)
-//     console.log(currentTime);
-// }
-
 function convertDayOfWeek(day) {
     switch(day) {
         case 0: return "SUN"
@@ -201,13 +192,12 @@ async function getCityImageData() {
         if (response.status !== 200) {
             throw new Error("cant get image from Flickr API");
         }
-        //proceed once the first promise is resolved.
-        let cityImageData = await response.json()
+        
+        let cityImageData = await response.json();
 
         showCityImage(cityImageData);
     } catch(err) {
         alert(err);
     }
-    
 }	
 
